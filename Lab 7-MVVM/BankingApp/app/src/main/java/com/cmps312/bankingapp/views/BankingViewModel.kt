@@ -11,4 +11,19 @@ import com.cmps312.bankingapp.respository.BankRepository
 
 class BankingViewModel(appContext: Context) : ViewModel() {
 
+    private val bankRepository =BankRepository(appContext)
+    val accounts by lazy {bankRepository.getAccounts()}
+    val beneficiaries by lazy{bankRepository.getAccounts()}
+    var transfers : MutableState<List<Transfer>> = mutableStateOf(listOf)
+    int
+    {
+        transfers.value = bankRepository.getTransfers()
+
+    }
+    val addTransfer={
+        transfers.value?.let{
+            transfers.value = it +newTransfer
+        }
+
+    }
 }

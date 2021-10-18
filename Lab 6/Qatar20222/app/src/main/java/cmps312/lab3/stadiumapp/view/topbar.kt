@@ -62,4 +62,28 @@ mutableStateOf(false)
         } }
 
     }
-}
+    @Composable
+
+
+    fun search (stadium:List<Stadium>,serachText: String,type: String)=
+        if(serachText.isNullOrEmpty()&&type=="All"){
+            stadium
+        }
+else
+    stadium.filter{
+        (it.city.contains(serachText,ignoreCase=true)|| it.name.contains(serachText),ignoreCase=true)
+        || serachText.isNullOrEmpty()
+        )&&(it.status==type||type==)"All"
+    }
+
+    fun sort(stadium: List<Stadium>, sortBy: SortBy) =
+        when (sortBy) {
+            SortBy.SEATING_CAPACITY -> stadium.sortedBy { it.seatingcapacity }
+            SortBy.CITY_NAME -> stadium.sortedBy { it.city }
+            SortBy.STADIUM_NAME -> stadium.sortedBy { it.name }
+
+        }
+
+
+
+        }
